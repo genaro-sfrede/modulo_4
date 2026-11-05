@@ -96,23 +96,70 @@ Podés explorar el mapa web interactivo en el siguiente enlace: 👉 [Ver Mapa I
 
 ## Actividad 2: Cobertura de nieve en el Valle de las Lágrimas
 
-*En desarrollo.*
+### Descripción de la Actividad
 
-Esta segunda fase del módulo se enfoca en el monitoreo ambiental mediante imágenes satelitales (ráster). El objetivo es cuantificar y comparar la variación de la superficie cubierta por nieve en el **Valle de las Lágrimas (Malargüe, Mendoza)** entre dos fechas de la misma época del año:
+Esta segunda fase del módulo se centró en el monitoreo medioambiental y el procesamiento de imágenes satelitales en formato ráster. El objetivo fue cuantificar y comparar la variación de la superficie cubierta por nieve en el sector cordillerano de Mendoza que incluye el **Valle de las Lágrimas** (Malargüe, 34°45′54″ S – 70°17′11″ O). Se compararon dos imágenes de la misma época del año, tomadas con dos años de diferencia:
 
 | Período | Fecha de la imagen | Fuente |
 | --- | --- | --- |
-| Imagen vieja | 24/10/2024 | NASA Worldview – HLS (Landsat/Sentinel-2), 30 m |
-| Imagen actual | 27/10/2026 | NASA Worldview – HLS (Landsat/Sentinel-2), 30 m |
+| Imagen vieja | 24/10/2024 | NASA Worldview (color verdadero) |
+| Imagen actual | 27/10/2026 | NASA Worldview (color verdadero) |
 
-Las dos imágenes son de fines de octubre. Así, la comparación mide la variación entre temporadas y no el deshielo propio del avance de la primavera.
+Las dos imágenes son de fines de octubre. Así, la comparación refleja la diferencia entre temporadas y no el deshielo propio del avance de la primavera.
+
+### Metodología y Herramientas Aplicadas
+
+1. **Gestión de imágenes ráster:**
+   - Se descargaron dos imágenes GeoTIFF (EPSG:4326, píxel de ~250 m) desde NASA Worldview.
+   - Cubren una franja de unos 147 × 462 km de la cordillera de Mendoza, de aproximadamente 6,77 millones de ha.
+   - Las dos imágenes se superpusieron en QGIS para la comparación temporal.
+2. **Ajuste de proyección cartográfica:**
+   - El Sistema de Referencia de Coordenadas (SRC) del proyecto se cambió de grados (EPSG:4326) a un sistema métrico proyectado (**EPSG:32719 – WGS 84 / UTM zona 19S**).
+   - En grados, el tamaño real de una unidad cambia con la latitud: a 35° S, 1° de longitud mide unos 91 km y 1° de latitud unos 111 km. En UTM ambas direcciones se miden en metros, lo que garantiza áreas exactas.
+3. **Vectorización y digitalización:**
+   - Se crearon dos capas Shapefile de polígonos, `vieja_poligono` y `actual_poligono`, en EPSG:32719.
+   - Con la conmutación de edición se digitalizaron las masas de nieve visibles en cada período, sin incluir nubes.
+4. **Geoprocesamiento y cálculo de superficies:**
+   - Se aplicó la Calculadora de Campos con la sintaxis espacial `$area / 10000` para obtener el área de cada polígono en hectáreas (`Area_ha`).
+   - El total por año se obtuvo con *Estadísticas básicas para campos* (SUM).
+
+### Resultados
+
+| Fecha | Superficie nevada (ha) | % de la franja analizada |
+| --- | --- | --- |
+| 24/10/2024 | 2.916.618,21 | 43,1 % |
+| 27/10/2026 | 3.662.147,07 | 54,1 % |
+| **Variación** | **+745.528,86 ha** | **+25,6 %** |
+
+La variación se calculó como:
+
+> Δ% = (A₂₀₂₆ − A₂₀₂₄) / A₂₀₂₄ × 100 = (3.662.147,07 − 2.916.618,21) / 2.916.618,21 × 100 = **+25,6 %**
+
+### Análisis
+
+- A fines de octubre de 2026, la superficie con nieve fue **un 25,6 % mayor** que en la misma fecha de 2024. Son casi 750.000 ha más: más de la mitad de la franja cordillerana analizada seguía cubierta.
+- El resultado es coherente con la temporada invernal 2026. Ese año hubo una **nevada calificada como histórica** en Malargüe, que cubrió los valles de Las Leñas y Los Molles en julio ([Los Andes, 22/07/2026](https://www.losandes.com.ar/sociedad/tras-la-nevada-historica-las-lenas-abre-todas-sus-pistas-precios-y-actividades-recorrer-los-valles-malargue-n5999435)). Un manto más grande en invierno tarda más en derretirse, y por eso a fines de octubre sigue cubriendo más superficie.
+- En la imagen de 2024, la nieve aparece más fragmentada (7 polígonos), con las laderas bajas y los fondos de valle descubiertos. En 2026, la cobertura es continua (1 polígono) y baja más en altitud, sobre todo en el borde este de la cordillera.
+- Para la ingeniería industrial, la nieve acumulada es la principal reserva de agua de los ríos de Mendoza. Una mayor cobertura en primavera anticipa más caudal para riego, industria y generación hidroeléctrica en la temporada siguiente.
+
+### Limitaciones
+
+- **Resolución de ~250 m:** cada píxel cubre unas 6 ha, así que las manchas de nieve chicas y los bordes finos quedan generalizados.
+- **Digitalización manual:** depende del criterio de quien dibuja, sobre todo en bordes difusos, en nieve en sombra y cerca de las nubes.
+- **Dos fechas puntuales:** muestran el estado de la nieve en esos días. No alcanzan para afirmar una tendencia de largo plazo.
+- **Área de estudio:** el análisis se hizo a escala regional, sobre la franja cordillerana completa que contiene al Valle de las Lágrimas, y no solo sobre el valle.
+
+### 🌐 Mapa Web Interactivo
+
+Puedes explorar el mapa web interactivo exportado directamente en el siguiente enlace: 👉 [Ver Mapa Interactivo del Valle de las Lágrimas](https://genaro-sfrede.github.io/modulo_4/mapa_nieve/index.html)
 
 ---
 
 ## 📥 Descargas
 
-El archivo `.zip` del proyecto se puede descargar desde este enlace:
+Los archivos .zip de los proyectos pueden descargarse mediante los siguientes atajos:
 
-[Descargá acá el paquete de la Actividad 1 (.zip)](https://raw.githubusercontent.com/genaro-sfrede/modulo_4/main/M4A1.zip)
+- [Descarga aquí el paquete de la Actividad 1 (.zip)](https://raw.githubusercontent.com/genaro-sfrede/modulo_4/main/M4A1.zip)
+- [Descarga aquí el paquete de la Actividad 2 (.zip)](https://raw.githubusercontent.com/genaro-sfrede/modulo_4/main/M4A2.zip)
 
-Para abrirlo, descomprimí el `.zip` sin cambiar la estructura de carpetas y abrí `M4A1.qgz` con QGIS 3.x. El proyecto usa rutas relativas.
+Para abrirlos: descomprimí el `.zip` sin cambiar la estructura de carpetas y abrí el archivo `.qgz` con QGIS 3.x. Los proyectos usan rutas relativas.
