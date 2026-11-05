@@ -90,7 +90,7 @@ Con estos datos se estudiaron dos cosas:
 
 ### 🌐 Mapa Web Interactivo
 
-Podés explorar el mapa web interactivo en el siguiente enlace: 👉 [Ver Mapa Interactivo de Bodegas de Mendoza](https://genaro-sfrede.github.io/modulo_4/mapa_bodegas/index.html)
+Podés explorar el mapa web interactivo en el siguiente enlace: 👉 [Ver Mapa Interactivo de Bodegas de Mendoza](https://github.com/genaro-sfrede/modulo_4/blob/main/mapa_bodegas/index.html)
 
 ---
 
