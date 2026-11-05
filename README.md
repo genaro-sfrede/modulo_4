@@ -96,9 +96,16 @@ Podés explorar el mapa web interactivo en el siguiente enlace: 👉 [Ver Mapa I
 
 ## Actividad 2: Cobertura de nieve en el Valle de las Lágrimas
 
-*En preparación.*
+*En desarrollo.*
 
-En esta actividad se va a cuantificar la variación de la superficie cubierta por nieve en el Valle de las Lágrimas (Malargüe, Mendoza). Se van a comparar dos imágenes Sentinel-2 del mismo mes, con unos dos años de diferencia, trabajadas en EPSG:32719. La superficie se va a calcular con `$area / 10000` sobre polígonos digitalizados para cada fecha.
+Esta segunda fase del módulo se enfoca en el monitoreo ambiental mediante imágenes satelitales (ráster). El objetivo es cuantificar y comparar la variación de la superficie cubierta por nieve en el **Valle de las Lágrimas (Malargüe, Mendoza)** entre dos fechas de la misma época del año:
+
+| Período | Fecha de la imagen | Fuente |
+| --- | --- | --- |
+| Imagen vieja | 24/10/2024 | NASA Worldview – HLS (Landsat/Sentinel-2), 30 m |
+| Imagen actual | 27/10/2026 | NASA Worldview – HLS (Landsat/Sentinel-2), 30 m |
+
+Las dos imágenes son de fines de octubre. Así, la comparación mide la variación entre temporadas y no el deshielo propio del avance de la primavera.
 
 ---
 
